@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showGameView = false
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world! This is changed again!")
+            if showGameView {
+                GameView()
+            } else {
+                MainMenu(showGameView : $showGameView)
+            }
         }
         .padding()
     }
