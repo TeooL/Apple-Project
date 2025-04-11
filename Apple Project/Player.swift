@@ -7,19 +7,24 @@
 
 import Foundation
 
-class Player: ObservableObject {
-    @Published var damage: Int = 10
-    @Published var attackSpeed: Int = 10
-    @Published var bulletCount: Int = 1
+struct Player {
+    var gold : Int = 0
+    var damage: Int = 10
+    var attackSpeed: Int = 10
+    var bulletCount: Int = 1
     
-    func damageUpgrade() {
+    mutating func damageUpgrade() {
         damage += 2
+        print(damage)
     }
     
-    func attackSpeedUpgrade() {
+    mutating func attackSpeedUpgrade() {
         attackSpeed += 2
+        print(attackSpeed)
     }
-    func bulletCountUpgrade() {
+    
+    mutating func bulletCountUpgrade() {
         bulletCount += 1
+        print(bulletCount)
     }
 }

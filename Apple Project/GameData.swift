@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+class GameData: ObservableObject {
+    @Published var player = Player()
+    
+    
+}
+

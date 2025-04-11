@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             if showGameView {
-                GameView()
+                GameView(gameData: GameData())
             } else {
                 MainMenu(showGameView : $showGameView)
             }
