@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import CoreData
+
+struct Habit: Identifiable {
+    var id: UUID = UUID()
+    var title: String
+    var category: String
+    var progress: Int
+}

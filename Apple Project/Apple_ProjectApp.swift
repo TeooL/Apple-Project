@@ -11,7 +11,8 @@ import SwiftUI
 struct Apple_ProjectApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HabitListView(viewModel: HabitViewModel())
+            AddHabitView(viewModel: HabitViewModel())
         }
     }
 }

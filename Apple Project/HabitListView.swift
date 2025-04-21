@@ -8,11 +8,32 @@
 import SwiftUI
 
 struct HabitListView: View {
+    @ObservedObject var viewModel: HabitViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Habits").font(.largeTitle)
+        List(viewModel.habits) { habit in
+            HStack {
+                Button(action: {
+                    viewModel.removeHabit(habit: habit)
+                }) {
+                    Image(systemName: "trash")
+                        .foregroundColor(.red)
+                }
+                VStack(alignment: .leading) {
+                    Text(habit.title).font(.headline)
+                    Text(habit.category).font(.subheadline)
+                }
+                Spacer()
+                Text("Progress: \(habit.progress) days")
+                Button(action: { viewModel.updateProgress(habit: habit) }) {
+                    Image(systemName: "plus.circle")
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    HabitListView()
+    HabitListView(viewModel: HabitViewModel())
 }

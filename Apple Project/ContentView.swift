@@ -8,20 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showGameView = false
-    
+    @ObservedObject var viewModel: HabitViewModel
     var body: some View {
         VStack {
-            if showGameView {
-                GameView(gameData: GameData())
-            } else {
-                MainMenu(showGameView : $showGameView)
-            }
+            HabitListView(viewModel: viewModel)
+            AddHabitView(viewModel: viewModel)
         }
-        .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(viewModel: HabitViewModel())
 }

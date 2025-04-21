@@ -8,11 +8,26 @@
 import SwiftUI
 
 struct AddHabitView: View {
+    @StateObject var viewModel : HabitViewModel
+    @State private var habitTitle = ""
+    @State private var category = ""
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TextField("Habit Title", text: $habitTitle)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+
+            TextField("Category", text: $category)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+
+            Button("Add Habit") {
+                viewModel.addHabits(title: habitTitle, category: category)
+            }
+        }
+        .padding()
     }
 }
 
 #Preview {
-    AddHabitView()
+    AddHabitView(viewModel: HabitViewModel())
 }
