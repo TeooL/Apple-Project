@@ -14,5 +14,4 @@ struct Habit: Identifiable {
     var category: String
     var progress: Double
     var details: String
-    var goal: Double
 }

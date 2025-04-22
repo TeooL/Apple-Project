@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel: HabitViewModel
+    @ObservedObject var viewModel = HabitViewModel()
     var body: some View {
         VStack {
             HabitListView(viewModel: viewModel)
-            AddHabitView(viewModel: viewModel)
         }
     }
 }

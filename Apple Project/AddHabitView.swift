@@ -11,7 +11,6 @@ struct AddHabitView: View {
     @StateObject var viewModel : HabitViewModel
     @State private var habitTitle = ""
     @State private var category = ""
-    @State private var goal = 0.0
 
     var body: some View {
         VStack {
@@ -22,7 +21,9 @@ struct AddHabitView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
             Button("Add Habit") {
-                viewModel.addHabits(title: habitTitle, category: category, goal: goal)
+                viewModel.addHabits(title: habitTitle, category: category)
+                habitTitle = ""
+                category = ""
             }
         }
         .padding()
