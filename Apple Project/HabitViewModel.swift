@@ -10,8 +10,8 @@ import Foundation
 class HabitViewModel: ObservableObject {
     @Published var habits: [Habit] = []
     
-    func addHabits(title: String, category: String){
-        let newHabit = Habit(title: title, category: category, progress: 0)
+    func addHabits(title: String, category: String, goal: Double){
+        let newHabit = Habit(title: title, category: category, progress: 0.0, details: "", goal: goal)
         habits.append(newHabit)
         print("Current Habits: \(habits)")
     }
@@ -22,5 +22,8 @@ class HabitViewModel: ObservableObject {
     }
     func removeHabit(habit: Habit){
         habits.removeAll { $0.id == habit.id }
+    }
+    func calcProgress(habit: Habit) -> Double {
+        return habit.progress / habit.goal
     }
 }

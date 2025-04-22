@@ -12,5 +12,7 @@ struct Habit: Identifiable {
     var id: UUID = UUID()
     var title: String
     var category: String
-    var progress: Int
+    var progress: Double
+    var details: String
+    var goal: Double
 }
