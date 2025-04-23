@@ -8,10 +8,17 @@
 import Foundation
 import CoreData
 
-struct Habit: Identifiable {
-    var id: UUID = UUID()
-    var title: String
-    var category: String
-    var progress: Double
-    var details: String
+class Habit: ObservableObject, Identifiable {
+    var id = UUID()
+    @Published var title: String
+    @Published var category: String
+    @Published var progress: Double
+    @Published var details: String
+    
+    init(title: String, category: String, progress: Double, details: String) {
+        self.title = title
+        self.category = category
+        self.progress = progress
+        self.details = details
+    }
 }

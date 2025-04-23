@@ -9,23 +9,62 @@ import SwiftUI
 
 struct HabitDetails: View {
     @ObservedObject var viewModel : HabitViewModel
-    @State var habit: Habit
+    @ObservedObject var habit: Habit
     
     var body: some View {
         VStack{
             Text("Title: \(habit.title)")
+                .font(.custom("Georgia", size: 26)) // Warm serif font
+                            .padding(10)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(Color.yellow.opacity(0.2)) // Gentle yellow backdrop
+                                    .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 3)
+                            )
+                            .padding(.vertical)
             Text("Category: \(habit.category)")
-            Spacer()
+                .font(.custom("Georgia", size: 20)) // Warm serif font
+                            .padding(10)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(Color.yellow.opacity(0.2)) // Gentle yellow backdrop
+                                    .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 3)
+                            )
+                            .padding(.horizontal)
             ProgressView(value: viewModel.calcProgress(habit: habit, goal: 10)){
-                Text("\(Int(habit.progress))/ 10 Days")
+                HStack {
+                    Text("\(Int(habit.progress))/ 10 Days")
+                    if (viewModel.achievementBadge(for: habit.progress, goal: 10)) {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                    } else {
+                        Image(systemName: "star")
+                    }
+                }
             }
             .padding()
             ProgressView(value: viewModel.calcProgress(habit: habit, goal: 30)){
-                Text("\(Int(habit.progress))/ 30 Days")
+                HStack{
+                    Text("\(Int(habit.progress))/ 30 Days")
+                    if (viewModel.achievementBadge(for: habit.progress, goal: 30)) {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                    } else {
+                        Image(systemName: "star")
+                    }
+                }
             }
             .padding()
-            ProgressView(value: viewModel.calcProgress(habit: habit, goal: 60)){
-                Text("\(Int(habit.progress))/ 60 Days")
+            ProgressView(value: viewModel.calcProgress(habit: habit, goal: 60)) {
+                HStack{
+                    Text("\(Int(habit.progress))/ 60 Days")
+                    if (viewModel.achievementBadge(for: habit.progress, goal: 60)) {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                    } else {
+                        Image(systemName: "star")
+                    }
+                }
             }
             .padding()
             Text("Details: \(habit.details)")
@@ -34,7 +73,7 @@ struct HabitDetails: View {
             HStack(spacing: 20) {
                 // Increment Days Button
                 Button(action: {
-                    viewModel.updateProgress(habit: habit)
+                    habit.progress += 1
                     print("Increment Progress Clicked")
                 }) {
                     Label("Complete", systemImage: "plus.circle")

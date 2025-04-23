@@ -11,7 +11,17 @@ struct ContentView: View {
     @ObservedObject var viewModel = HabitViewModel()
     var body: some View {
         VStack {
-            HabitListView(viewModel: viewModel)
+            TabView {
+                HabitListView(viewModel: viewModel)
+                    .tabItem {
+                        Label("Habits", systemImage: "checkmark.circle.fill")
+                    }
+
+                DailyChallengesView()
+                    .tabItem {
+                        Label("Challenges", systemImage: "star.fill")
+                    }
+            }
         }
     }
 }
